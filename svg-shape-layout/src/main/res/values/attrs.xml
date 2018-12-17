@@ -1,0 +1,7 @@
+<resources>
+    <declare-styleable name="SVGShapeLayout">
+        <attr name="svg" format="reference" />
+        <!--<attr name="strokeWidth" format="dimension|reference" />
+        <attr name="strokeColor" format="color|reference" />-->
+    </declare-styleable>
+</resources>
