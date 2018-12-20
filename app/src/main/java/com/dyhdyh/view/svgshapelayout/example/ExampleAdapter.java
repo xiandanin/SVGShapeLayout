@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.dyhdyh.view.svgshapelayout.SVGShapeLayout;
+import com.dyhdyh.view.SVGShapeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +43,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleH
     public void onBindViewHolder(@NonNull ExampleHolder holder, int i) {
         final ExampleInfo item = mData.get(i);
         holder.svgLayout.setSVGResources(item.getSvgRes());
-        //holder.svgLayout.setStrokeWidth(item.getStrokeWidth());
+        holder.svgLayout.setStrokeWidth(item.getStrokeWidth());
     }
 
     public List<ExampleInfo> getData() {

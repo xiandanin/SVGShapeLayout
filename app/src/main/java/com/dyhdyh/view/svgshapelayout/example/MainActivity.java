@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.SeekBar;
 
 public class MainActivity extends AppCompatActivity {
+    SeekBar seekbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,12 +17,12 @@ public class MainActivity extends AppCompatActivity {
         rv.setLayoutManager(new GridLayoutManager(this, 2));
         final ExampleAdapter adapter = new ExampleAdapter();
         rv.setAdapter(adapter);
-
-        SeekBar seekbar = findViewById(R.id.seekbar);
+        seekbar = findViewById(R.id.seekbar);
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                for (ExampleInfo item : adapter.getData()) {
+                for (int i = 0; i < adapter.getData().size(); i++) {
+                    ExampleInfo item = adapter.getData().get(i);
                     item.setStrokeWidth(progress);
                 }
                 adapter.notifyDataSetChanged();
@@ -38,4 +39,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }

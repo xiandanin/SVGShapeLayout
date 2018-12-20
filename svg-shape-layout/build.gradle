@@ -3,4 +3,5 @@ apply from: "bintray.gradle"
 
 dependencies {
     compileOnly "com.android.support:appcompat-v7:$rootProject.ext.android.supportVersion"
+    implementation 'com.sdsmdg.harjot:vectormaster:1.1.3'
 }
