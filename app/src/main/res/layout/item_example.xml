@@ -6,16 +6,17 @@
     android:layout_height="wrap_content">
 
     <com.dyhdyh.view.SVGShapeLayout
-        android:layout_width="100dp"
-        app:strokeColor="@color/colorAccent"
         android:id="@+id/svg_layout"
+        android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        app:strokeColor="@color/colorAccent">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/test" />
+        
     </com.dyhdyh.view.SVGShapeLayout>
 
 </RelativeLayout>

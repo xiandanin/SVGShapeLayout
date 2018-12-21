@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 for (int i = 0; i < adapter.getData().size(); i++) {
                     ExampleInfo item = adapter.getData().get(i);
-                    item.setStrokeWidth(progress);
+                    item.setStrokeWidth(progress / 3);
                 }
                 adapter.notifyDataSetChanged();
             }
