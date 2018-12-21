@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
@@ -102,7 +103,7 @@ public class SVGShapeLayout extends RelativeLayout {
             final int measuredHeight = getMeasuredHeight();
             Bitmap maskBitmap = Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.ARGB_8888);
             Canvas maskCanvas = new Canvas(maskBitmap);
-            mVectorDrawable.setBounds(getPaddingLeft(), getPaddingTop(), measuredWidth - getPaddingRight(), measuredHeight - getPaddingBottom());
+            mVectorDrawable.setBounds(0, 0, measuredWidth, measuredHeight);
             mVectorDrawable.draw(maskCanvas);
             mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
             canvas.drawBitmap(maskBitmap, 0.0f, 0.0f, mPaint);
@@ -111,29 +112,33 @@ public class SVGShapeLayout extends RelativeLayout {
 
     protected void drawShapeAndStroke(Canvas canvas) {
         try {
-            mVectorMasterDrawable.setBounds(0, 0, getWidth(), getHeight());
+            final int measuredWidth = getMeasuredWidth();
+            final int measuredHeight = getMeasuredHeight();
+            mVectorMasterDrawable.setBounds(0, 0, measuredWidth, measuredHeight);
             final Field vectorModelField = VectorMasterDrawable.class.getDeclaredField("vectorModel");
             vectorModelField.setAccessible(true);
             VectorModel vectorModel = (VectorModel) vectorModelField.get(mVectorMasterDrawable);
             final ArrayList<PathModel> pathModels = vectorModel.getPathModels();
+            Path path = new Path();
             for (PathModel outline : pathModels) {
                 outline.setFillColor(Color.TRANSPARENT);
-                //保存画布状态
-                canvas.save();
-                //把画布裁剪成形状
-                canvas.clipPath(outline.getPath());
-                super.dispatchDraw(canvas);
-                //描边
-                mPaint.setStyle(Paint.Style.STROKE);
-                mPaint.setColor(mStrokeColor);
-                mPaint.setStrokeWidth(mStrokeWidth);
-                canvas.drawPath(outline.getPath(), mPaint);
-                //恢复之前保存的状态
-                canvas.restore();
-                //再画一个1像素的形状 把锯齿遮掉
-                mPaint.setStrokeWidth(1f);
-                canvas.drawPath(outline.getPath(), mPaint);
+                path.addPath(outline.getPath());
             }
+            //保存画布状态
+            canvas.save();
+            //把画布裁剪成形状
+            canvas.clipPath(path);
+            super.dispatchDraw(canvas);
+            //描边
+            mPaint.setStyle(Paint.Style.STROKE);
+            mPaint.setColor(mStrokeColor);
+            mPaint.setStrokeWidth(mStrokeWidth);
+            canvas.drawPath(path, mPaint);
+            //恢复之前保存的状态
+            canvas.restore();
+            //再画一个1像素的形状 把锯齿遮掉
+            mPaint.setStrokeWidth(1f);
+            canvas.drawPath(path, mPaint);
         } catch (Exception e) {
             e.printStackTrace();
             super.dispatchDraw(canvas);

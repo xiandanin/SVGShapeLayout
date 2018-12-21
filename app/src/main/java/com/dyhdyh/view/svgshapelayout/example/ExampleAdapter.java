@@ -25,7 +25,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleH
         mData.add(new ExampleInfo(R.drawable.ic_rhombus));
         mData.add(new ExampleInfo(R.drawable.ic_pentagram));
         mData.add(new ExampleInfo(R.drawable.ic_diamond));
-        mData.add(new ExampleInfo(R.drawable.ic_sun));
+        mData.add(new ExampleInfo(R.drawable.ic_love));
         mData.add(new ExampleInfo(R.drawable.ic_qq));
         mData.add(new ExampleInfo(R.drawable.ic_wechat));
         mData.add(new ExampleInfo(R.drawable.ic_weibo));
