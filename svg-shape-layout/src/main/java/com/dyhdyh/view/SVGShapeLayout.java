@@ -13,6 +13,7 @@ import android.graphics.RectF;
 import android.support.annotation.DrawableRes;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
@@ -162,16 +163,21 @@ public class SVGShapeLayout extends RelativeLayout {
         if (mSVGResourcesId <= 0) {
             return;
         }
-        if (mStrokeWidth > 0 && mStrokeColor != Color.TRANSPARENT) {
-            //如果有边框 就得用裁剪的方式
-            if (mVectorMasterDrawable == null) {
-                mVectorMasterDrawable = new VectorMasterDrawable(getContext(), mSVGResourcesId);
+        try {
+            if (mStrokeWidth > 0 && mStrokeColor != Color.TRANSPARENT) {
+                //如果有边框 就得用裁剪的方式
+                if (mVectorMasterDrawable == null) {
+                    mVectorMasterDrawable = new VectorMasterDrawable(getContext(), mSVGResourcesId);
+                }
+            } else {
+                //没有边框就用 遮罩的方式
+                if (mVectorDrawable == null) {
+                    mVectorDrawable = VectorDrawableCompat.create(getResources(), mSVGResourcesId, getContext().getTheme());
+                }
             }
-        } else {
-            //没有边框就用 遮罩的方式
-            if (mVectorDrawable == null) {
-                mVectorDrawable = VectorDrawableCompat.create(getResources(), mSVGResourcesId, getContext().getTheme());
-            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e("SVGShapeLayout", "SVG初始化失败");
         }
     }
 }

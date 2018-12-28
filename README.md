@@ -33,3 +33,7 @@ svgLayout.setSVGResources(R.drawable.ic_qq);
 svgLayout.setStrokeWidth(10);
 svgLayout.setStrokeColor(Color.BLUE);
 ```
+
+
+### 注意事项
+某些`fillType`为`evenOdd`的SVG可能会出现`Resources$NotFoundException`，可以尝试把这个属性去掉
