@@ -1,7 +1,14 @@
 <resources>
     <declare-styleable name="SVGShapeLayout">
+        <!--vector-->
         <attr name="svg" format="reference" />
+        <!--描边宽度-->
         <attr name="strokeWidth" format="dimension|reference" />
+        <!--描边颜色-->
         <attr name="strokeColor" format="color|reference" />
+        <!--阴影颜色-->
+        <attr name="shadowColor" format="color|reference" />
+        <!--阴影半径-->
+        <attr name="shadowRadius" format="dimension|reference" />
     </declare-styleable>
 </resources>

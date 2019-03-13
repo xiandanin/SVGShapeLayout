@@ -7,6 +7,7 @@ package com.dyhdyh.view.svgshapelayout.example;
 public class ExampleInfo {
     private int svgRes;
     private int strokeWidth;
+    private int shadowRadius;
 
     public ExampleInfo(int svgRes) {
         this.svgRes = svgRes;
@@ -27,4 +28,13 @@ public class ExampleInfo {
     public void setStrokeWidth(int strokeWidth) {
         this.strokeWidth = strokeWidth;
     }
+
+    public int getShadowRadius() {
+        return shadowRadius;
+    }
+
+    public void setShadowRadius(int shadowRadius) {
+        this.shadowRadius = shadowRadius;
+    }
+
 }

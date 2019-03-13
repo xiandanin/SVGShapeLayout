@@ -1,17 +1,18 @@
-![](screenshot/1.gif)
+<img src="screenshot/1.jpg"  width="250"/>
+<img src="screenshot/2.jpg"  width="250"/>
 
 
 ### Gradle引入
 ```
-implementation 'com.dyhdyh.view:svg-shape-layout:1.0.1-beta'
+implementation 'com.dyhdyh.view:svg-shape-layout:1.0.2'
 ```
 
 ### 将SVG转成Vector XML
-<img src="screenshot/2.jpg"  width="800"/>
+<img src="screenshot/3.jpg"  width="600"/>
 
 ### 在XML使用
 ```
-<com.dyhdyh.view.SVGShapeLayout
+<com.dyhdyh.view.svgshape.SVGShapeLayout
     android:id="@+id/svg_layout"
     android:layout_width="100dp"
     android:layout_height="100dp"
@@ -24,14 +25,32 @@ implementation 'com.dyhdyh.view:svg-shape-layout:1.0.1-beta'
         android:layout_height="match_parent"
         android:src="@drawable/test" />
         
-</com.dyhdyh.view.SVGShapeLayout>
+</com.dyhdyh.view.svgshape.SVGShapeLayout>
 ```
 
-### 在Java中使用
+或
+
 ```
-svgLayout.setSVGResources(R.drawable.ic_qq);
-svgLayout.setStrokeWidth(10);
-svgLayout.setStrokeColor(Color.BLUE);
+<com.dyhdyh.view.svgshape.SVGShapeImageView
+    app:strokeWidth="5dp"
+    app:svg="@drawable/ic_love"
+    app:strokeColor="@color/colorAccent"
+    android:layout_width="100dp"
+    android:layout_height="100dp" />
+```
+
+### 支持的属性
+```
+<!--vector-->
+<attr name="svg" format="reference" />
+<!--描边宽度-->
+<attr name="strokeWidth" format="dimension|reference" />
+<!--描边颜色-->
+<attr name="strokeColor" format="color|reference" />
+<!--阴影颜色-->
+<attr name="shadowColor" format="color|reference" />
+<!--阴影半径-->
+<attr name="shadowRadius" format="dimension|reference" />
 ```
 
 ### 兼容Android 4.4及以下
