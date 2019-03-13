@@ -7,7 +7,7 @@ implementation 'com.dyhdyh.view:svg-shape-layout:1.0.2'
 ```
 
 ### 将SVG转成Vector XML
-<img src="screenshot/3.jpg"  width="600"/>
+<img src="screenshot/3.jpg"  width="800"/>
 
 ### 在XML使用
 ```
