@@ -1,5 +1,4 @@
-<img src="screenshot/1.jpg"  width="250"/>
-<img src="screenshot/2.jpg"  width="250"/>
+<img src="screenshot/1.jpg"  width="500"/>
 
 
 ### Gradle引入
